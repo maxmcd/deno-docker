@@ -36,7 +36,6 @@ RUN cd $GOPATH/src/github.com/ry/v8worker2 \
     && git clone https://github.com/ry/v8worker2.git . \
     && rm -rf v8 \
     && git clone https://github.com/v8/v8.git && cd v8 \
-    # && git checkout fe12316ec4b4a101923e395791ca55442e62f4cc \
     && cd .. \
     && rm -rf depot_tools \
     && git clone https://chromium.googlesource.com/chromium/tools/depot_tools.git \
