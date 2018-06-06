@@ -1,0 +1,18 @@
+version: '3'
+
+services:
+  build-cache:
+    build:
+      context: .
+      dockerfile: ./build-cache.Dockerfile
+    image: maxmcd/deno:_build-cache
+  deno:
+    build: 
+      context: .
+      dockerfile: ./Dockerfile
+    image: maxmcd/deno:master
+  slim:
+    build:
+      context: .
+      dockerfile: ./slim.Dockerfile
+    image: maxmcd/deno:slim
