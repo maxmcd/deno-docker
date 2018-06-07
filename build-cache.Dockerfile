@@ -35,8 +35,7 @@ RUN mkdir -p $GOPATH/src/github.com/ry/v8worker2
 RUN cd $GOPATH/src/github.com/ry/v8worker2 \
     && git clone https://github.com/ry/v8worker2.git . \
     && rm -rf v8 \
-    && git clone https://github.com/v8/v8.git && cd v8 \
-    && cd .. \
+    && git clone https://github.com/v8/v8.git
     && rm -rf depot_tools \
     && git clone https://chromium.googlesource.com/chromium/tools/depot_tools.git \
     && git submodule update --init --recursive \

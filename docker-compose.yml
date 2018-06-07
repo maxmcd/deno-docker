@@ -6,6 +6,11 @@ services:
       context: .
       dockerfile: ./build-cache.Dockerfile
     image: maxmcd/deno:_build-cache
+  build-cache-lambda:
+    build:
+      context: .
+      dockerfile: ./build-cache-lambda.Dockerfile
+    image: maxmcd/deno:_build-cache-lambda
   deno:
     build: 
       context: .
