@@ -35,14 +35,24 @@ RUN mkdir -p $GOPATH/src/github.com/ry/v8worker2
 RUN cd $GOPATH/src/github.com/ry/v8worker2 \
     && git clone https://github.com/ry/v8worker2.git . \
     && rm -rf v8 \
-    && git clone https://github.com/v8/v8.git
+    && git clone --depth 1 https://chromium.googlesource.com/v8/v8.git \
     && rm -rf depot_tools \
-    && git clone https://chromium.googlesource.com/chromium/tools/depot_tools.git \
-    && git submodule update --init --recursive \
-    && cd $GOPATH/src/github.com/ry/v8worker2 \
+    && git clone --depth 1 https://chromium.googlesource.com/chromium/tools/depot_tools.git \
+    && git submodule update --init --recursive
+
+COPY build.py $GOPATH/src/github.com/ry/v8worker2
+RUN cd $GOPATH/src/github.com/ry/v8worker2 \
     && python -u ./build.py --use_ccache \
     && rm -rf $GOPATH/src/github.com/ry/v8worker2/v8/build \
     && rm -rf $GOPATH/src/github.com/ry/v8worker2/v8/.git \
     && rm -rf $GOPATH/src/github.com/ry/v8worker2/v8/third_party \
     && rm -rf $GOPATH/src/github.com/ry/v8worker2/v8/test \
     && rm -rf $GOPATH/src/github.com/ry/v8worker2/depot_tools 
+
+RUN go get -u github.com/ry/deno/... || true
+
+WORKDIR $GOPATH/src/github.com/ry/deno
+RUN make
+
+RUN ldd deno
+
