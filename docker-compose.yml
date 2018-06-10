@@ -6,6 +6,11 @@ services:
       context: .
       dockerfile: ./build-cache.Dockerfile
     image: maxmcd/deno:_build-cache
+  deno2:
+    build: 
+      context: .
+      dockerfile: ./deno2.Dockerfile
+    image: maxmcd/deno:deno2
   deno:
     build: 
       context: .
