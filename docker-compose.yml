@@ -6,16 +6,21 @@ services:
       context: .
       dockerfile: ./build-cache.Dockerfile
     image: maxmcd/deno:_build-cache
-  build-cache-lambda:
+  build-cache-jessie:
     build:
       context: .
-      dockerfile: ./build-cache-lambda.Dockerfile
-    image: maxmcd/deno:_build-cache-lambda
+      dockerfile: ./build-cache-jessie.Dockerfile
+    image: maxmcd/deno:_build-cache-jessie
   deno:
     build: 
       context: .
       dockerfile: ./Dockerfile
     image: maxmcd/deno:master
+  slim-jessie:
+    build:
+      context: .
+      dockerfile: ./slim-jessie.Dockerfile
+    image: maxmcd/deno:slim-jessie
   slim:
     build:
       context: .
