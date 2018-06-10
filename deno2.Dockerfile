@@ -24,4 +24,6 @@ RUN git clone https://github.com/ry/deno.git .
 RUN git checkout deno2
 WORKDIR $GOPATH/src/github.com/ry/deno/deno2
 RUN cd js; yarn install
-RUN ./tools/build.py --use_ccache --debug
+RUN ./tools/build.py --use_ccache --debug || true
+RUN gn gen out/Debug --args='cc_wrapper="ccache" is_debug=true '
+RUN ninja -C out/Debug/ deno
