@@ -27,7 +27,7 @@ default_args = {
   # Default to release builds for this project.
   is_component_build = false
   is_debug = false
-  libcpp_is_static = true
+  libcpp_is_static = false
   symbol_level = 1
   treat_warnings_as_errors = false
   use_custom_libcxx = false
@@ -41,8 +41,8 @@ default_args = {
   v8_experimental_extra_library_files = []
   v8_extra_library_files = []
   v8_imminent_deprecation_warnings = false
-  v8_monolithic = true
-  v8_static_library = true
+  v8_monolithic = false
+  v8_static_library = false
   v8_target_cpu = "x64"
   v8_untrusted_code_mitigations = false
 
