@@ -6,4 +6,4 @@ This repo has two images `master` and `slim`. `master` builds deno from scratch 
 
 ### Deno2
 
-There is now a working deno2 build. As of 2018/06/13 deno2 can't dynamically run code, it simply runs the file `ry/deno/deno2/js/main.ts`. The `deno2` image tag is available to pull for development.
+There is now a working deno2 build. As far as I can tell as of 2018/06/13 deno2 can't dynamically run code, it simply runs the file `ry/deno/deno2/js/main.ts`. The `deno2` image tag is available to pull for development.
