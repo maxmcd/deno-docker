@@ -23,9 +23,8 @@ WORKDIR $GOPATH/src/github.com/ry/deno
 RUN git clone https://github.com/ry/deno.git .
 RUN git checkout deno2
 WORKDIR $GOPATH/src/github.com/ry/deno/deno2
-RUN cd js; yarn install && yarn add source-map-support
-COPY main.cc .
-COPY .gn .
+RUN cd js; yarn install
+# COPY .gn .
 RUN ./tools/build.py --use_ccache || true
 RUN gn gen out/Debug --args='cc_wrapper="ccache" is_debug=false '
 # RUN ninja -C out/Debug/ deno
