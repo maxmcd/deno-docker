@@ -4,11 +4,6 @@ services:
 script:
 - set -e
 - echo "$DOCKER_PASSWORD" | docker login --username "$DOCKER_USERNAME" --password-stdin
-- docker-compose build deno
-- docker-compose run deno make test
-- docker-compose push deno
-- docker-compose build slim
-- docker-compose push slim
 - docker-compose build deno2
 - docker-compose push deno2
 env:
