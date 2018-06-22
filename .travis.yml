@@ -4,11 +4,11 @@ services:
 script:
 - set -e
 - echo "$DOCKER_PASSWORD" | docker login --username "$DOCKER_USERNAME" --password-stdin
-- docker-compose build deno2
-- docker-compose run deno2 /opt/deno/src/out/Default/mock_runtime_test
-- docker-compose run deno2 /opt/deno/src/out/Default/deno foo bar
-- docker-compose run deno2 /opt/deno/src/out/Default/deno_rs purrr
-- docker-compose push deno2
+- docker-compose build deno
+- docker-compose run deno /opt/deno/src/out/Default/mock_runtime_test
+- docker-compose run deno /opt/deno/src/out/Default/deno foo bar
+- docker-compose run deno /opt/deno/src/out/Default/deno_rs purrr
+- docker-compose push deno
 env:
   global:
   - secure: D9u/uHAJF1d25aD7clBEVDVgvtPH7MyETa4/YbWI9vm0d0Oh64aLPB97BRsdTf0SyuAZBMNhu0tI9E7tialElhKUmgcmFwFMCNLFtwLS9bC1AioiVCnkAL18ZYxjEu6nHkQyZrimyMSby23rquSZduCPEL9Tdl7x8hwahYwJt9ziCDhiqOLgqHDgcjfXaGsDpqWsGzFoQ6hZ47FPBG8a8DV8dpvyqcw1c5/AxuXN1ED+FVq8b8rCFATyFVU4L0PbhY3qWWV2hjKa1N8200Pb6zX+xepdjmiRsuvaGjAn1TblHTN5eIW1MCURdP7pIsvnIM064Okll9DmuGZIA265XDq0Apb7OPm8/lEJIdL2jWpQ8rEexjcuCgOr61PwqQEoLLTbGn+gPNj38WFMDNMDQ8OYtEzcykTRly5rIx6Af4OskLQbv8wmLFJyqeovhroxvZFmRPMpTTTBvw4HOhL4Ow3IiyLTG/+3OGrCSpgI5JxXmrudEEaP6eEx8krnvaw+IM11LX4JXjKuYk3Vum5msAHDdvOjO0CASs4XLAoJ9lRIIXTcda0rsDo0J6Rjeakjf6JzAFPo2tM9EDd+1LRaJD/tQIb8Fb31yWnG0gnsr6fGaUpvYyrNyQ0hHVnq49wlLoLwyUNy+UJpOOXy6+iVOepTST0BpTkHpV3NCWIB2Es=

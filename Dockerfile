@@ -1,9 +1,12 @@
 FROM maxmcd/deno:_build-cache
 
-# Will not exit cleanly before make populates proto structs
-RUN go get -u github.com/ry/deno/... || true
+WORKDIR /opt/
+RUN git clone https://github.com/ry/deno.git
+WORKDIR /opt/deno/src
+RUN cd js; yarn install
+RUN gclient sync --no-history
+RUN gn gen out/Default --args='is_debug=false use_allocator="none" cc_wrapper="ccache" use_custom_libcxx=false use_sysroot=false'
+RUN ninja -C out/Default/ mock_runtime_test deno
+RUN ninja -C out/Default/ deno_rs
 
-WORKDIR $GOPATH/src/github.com/ry/deno
-RUN make
-
-CMD make
+CMD /opt/deno/src/out/Default/deno
