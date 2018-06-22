@@ -5,6 +5,9 @@ script:
 - set -e
 - echo "$DOCKER_PASSWORD" | docker login --username "$DOCKER_USERNAME" --password-stdin
 - docker-compose build deno2
+- docker-compose run deno2 /opt/deno/src/out/Default/mock_runtime_test
+- docker-compose run deno2 /opt/deno/src/out/Default/deno foo bar
+- docker-compose run deno2 /opt/deno/src/out/Default/deno_rs purrr
 - docker-compose push deno2
 env:
   global:
