@@ -9,7 +9,6 @@ services:
 - docker
 script:
 - set -e
-- mkdir build-path && mkdir ccache_dir
 - echo "$DOCKER_PASSWORD" | docker login --username "$DOCKER_USERNAME" --password-stdin
 - docker-compose build deno
 - VOLUMES="-v ./build-path:/opt/deno/src/out/Default -v ./ccache_dir:/root/.ccache/" ./build-with-volumes.sh
