@@ -21,7 +21,8 @@ RUN curl -sL https://deb.nodesource.com/setup_10.x | bash - \
     && apt-get update && apt-get install -y nodejs \
     && npm install -g yarn
 
-RUN curl https://sh.rustup.rs > rustup.sh && sh ./rustup.sh -y
+RUN curl -sSf https://sh.rustup.rs | sh -s -- -y
+ENV PATH=/root/.cargo/bin:$PATH
 
 RUN cd /opt/ && git clone https://chromium.googlesource.com/chromium/tools/depot_tools.git
 ENV PATH=$PATH:/opt/depot_tools

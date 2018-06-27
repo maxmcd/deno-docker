@@ -10,7 +10,12 @@ services:
     build: 
       context: .
       dockerfile: ./Dockerfile
-    image: maxmcd/deno2:master
+    image: maxmcd/deno:deno2
+  travis:
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    image: maxmcd/deno:deno2
   slim:
     build:
       context: .
