@@ -1,4 +1,4 @@
-
+set -e
 IMAGE=maxmcd/deno:deno2
 
 ./run-and-commit.sh $IMAGE gclient sync --no-history
