@@ -12,6 +12,7 @@ script:
 - set -e
 - echo "$DOCKER_PASSWORD" | docker login --username "$DOCKER_USERNAME" --password-stdin
 - docker-compose build deno
+- ls -lah $HOME/third_party
 - VOLUMES="-v $HOME/third_party:/opt/deno/src/third_party/ -v $HOME/build-path:/opt/deno/src/out/Default -v $HOME/ccache_dir:/root/.ccache/" ./build-with-volumes.sh
 env:
   global:
