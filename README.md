@@ -2,8 +2,6 @@
 
 Docker images for [ry/deno](https://github.com/ry/deno)
 
-This repo has two images `master` and `slim`. `master` builds deno from scratch and is hopefully a good reference for building deno yourself. `slim` copies the resulting deno executable from `master` if you would like to use it as a standalone executable.
+This repo no longer containes images that can run Typescript. There is a `build-cache.Dockerfile` and a `Dockerfile` as references on how to build deno. As soon as deno is at the point where it can execute arbitrary Typescript again this repo will be updated.
 
-### Deno2
-
-There is now a working deno2 build. As far as I can tell as of 2018/06/13 deno2 can't dynamically run code, it simply runs the file `ry/deno/deno2/js/main.ts`. The `deno2` image tag is available to pull for development.
+If you're using this as a build reference ensure to check out the build details in deno's [.travis.yml](https://github.com/ry/deno/blob/master/.travis.yml).
