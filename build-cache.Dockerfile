@@ -26,3 +26,11 @@ ENV PATH=/root/.cargo/bin:$PATH
 
 RUN cd /opt/ && git clone https://chromium.googlesource.com/chromium/tools/depot_tools.git
 ENV PATH=$PATH:/opt/depot_tools
+
+RUN cd /opt/ && git clone https://github.com/ry/deno.git
+WORKDIR /opt/deno
+RUN ./tools/build_third_party.py
+RUN gn gen out/Default/ --args='is_debug=false use_allocator="none" cc_wrapper="ccache" use_custom_libcxx=false use_sysroot=false'
+RUN ccache -s
+RUN ninja -C out/Default/ :all
+
