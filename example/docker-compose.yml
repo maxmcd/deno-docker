@@ -3,5 +3,3 @@ version: '3'
 services:
   deno:
     build: .
-    volumes:
-      - .:/opt/
