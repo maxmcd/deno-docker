@@ -1,5 +1,11 @@
 FROM phusion/baseimage
 
+# complete ccache setup
+ENV PATH="/usr/lib/ccache/:$PATH"
+ENV CCACHE_SLOPPINESS=time_macros
+ENV CCACHE_CPP2=yes
+ENV PATH=/root/.cargo/bin:$PATH
+
 RUN apt-get update && apt-get install -y --no-install-recommends \
     ca-certificates \
     libgtk-3-dev \
@@ -10,27 +16,23 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     build-essential \
     git \
     && apt-get clean -y \
-    && rm -rf /var/lib/apt/lists/* 
-
-ENV PATH="/usr/lib/ccache/:$PATH"
-RUN mkdir -p /root/.ccache/ && touch /root/.ccache/ccache.conf
-ENV CCACHE_SLOPPINESS=time_macros
-ENV CCACHE_CPP2=yes
-
-RUN curl -sL https://deb.nodesource.com/setup_10.x | bash - \
+    && rm -rf /var/lib/apt/lists/* \
+    # set up ccache
+    && mkdir -p /root/.ccache/ && touch /root/.ccache/ccache.conf \
+    # install nodejs
+    && curl -sL https://deb.nodesource.com/setup_10.x | bash - \
     && apt-get update && apt-get install -y nodejs \
-    && npm install -g yarn
+    && npm install -g yarn \
+    # install rust
+    && curl -sSf https://sh.rustup.rs | sh -s -- -y \
+    # deno
+    && cd /opt/ && git clone https://github.com/ry/deno.git \
+    && cd deno && git submodule update --init --recursive \
+    && ccache -s \
+    && ./tools/setup.py \
+    && ./tools/build.py 
+    # Accepts ninja build args
+    # https://github.com/ninja-build/ninja/blob/ca041d88f4d610332aa48c801342edfafb622ccb/src/ninja.cc#L197-L220
 
-RUN curl -sSf https://sh.rustup.rs | sh -s -- -y
-ENV PATH=/root/.cargo/bin:$PATH
-
-RUN cd /opt/ && git clone https://chromium.googlesource.com/chromium/tools/depot_tools.git
-ENV PATH=$PATH:/opt/depot_tools
-
-RUN cd /opt/ && git clone https://github.com/ry/deno.git
 WORKDIR /opt/deno
-RUN ./tools/build_third_party.py
-RUN gn gen out/Default/ --args='is_debug=false use_allocator="none" cc_wrapper="ccache" use_custom_libcxx=false use_sysroot=false'
-RUN ccache -s
-RUN ninja -C out/Default/ :all
 
