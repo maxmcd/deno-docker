@@ -1,6 +1,7 @@
 FROM phusion/baseimage
 
 # complete ccache setup
+ENV DENO_BUILD_MODE=release
 ENV PATH="/usr/lib/ccache/:$PATH"
 ENV CCACHE_SLOPPINESS=time_macros
 ENV CCACHE_CPP2=yes

@@ -11,9 +11,11 @@ services:
 script:
 - set -e
 - echo "$DOCKER_PASSWORD" | docker login --username "$DOCKER_USERNAME" --password-stdin
-- docker-compose build deno
+- docker-compose build master
+- docker-compose build jessie
 - docker-compose build slim
-- docker-compose push deno
+- docker-compose push master
+- docker-compose push jessie
 - docker-compose push slim
 env:
   global:
