@@ -2,7 +2,11 @@
 
 Docker images for [denoland/deno](https://github.com/denoland/deno)
 
-This repo has two images `master` and `slim`. `master` builds deno from scratch and is hopefully a good reference for building deno yourself. `slim` copies the resulting deno executable from master if you would like to use it as a standalone executable.
+Tags:
+
+ - `jessie` *[(0/jessie/Dockerfile)](https://github.com/maxmcd/deno-docker/blob/master/0/jessie/Dockerfile)*
+ - `slim` *[(0/slim/Dockerfile)](https://github.com/maxmcd/deno-docker/blob/master/0/slim/Dockerfile)*
+ - `master` *[(Dockerfile)](https://github.com/maxmcd/deno-docker/blob/master/Dockerfile)*
 
 ## Contributing
 
