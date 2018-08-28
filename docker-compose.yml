@@ -6,13 +6,14 @@ services:
       context: .
       dockerfile: ./build-cache.Dockerfile
     image: maxmcd/deno:_build-cache
-  deno:
+  master:
     build: 
       context: .
       dockerfile: ./Dockerfile
     image: maxmcd/deno:master
+  jessie:
+    build: ./0/jessie/
+    image: maxmcd/deno:jessie
   slim:
-    build: 
-      context: .
-      dockerfile: ./slim.Dockerfile
+    build: ./0/slim/
     image: maxmcd/deno:slim
