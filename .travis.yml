@@ -1,11 +1,4 @@
 sudo: required
-cache:
-  ccache: true
-  directories:
-   - src/js/node_modules/
-   - build-path
-   - ccache_dir
-   - third_party
 services:
 - docker
 script:
