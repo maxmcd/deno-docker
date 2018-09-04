@@ -27,7 +27,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     # install rust
     && curl -sSf https://sh.rustup.rs | sh -s -- -y \
     # deno
-    && cd /opt/ && git clone https://github.com/ry/deno.git \
+    && cd /opt/ && git clone https://github.com/denoland/deno.git \
     && cd deno && git submodule update --init --recursive \
     && ccache -s \
     && ./tools/setup.py \
