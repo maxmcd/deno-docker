@@ -1,6 +1,6 @@
 FROM debian:jessie
 
-ENV DENO_VERSION 0.1.10
+ENV DENO_VERSION 0.1.11
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
     ca-certificates \
