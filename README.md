@@ -6,7 +6,6 @@ Tags:
 
  - `jessie` *[(0/jessie/Dockerfile)](https://github.com/maxmcd/deno-docker/blob/master/0/jessie/Dockerfile)*
  - `slim` *[(0/slim/Dockerfile)](https://github.com/maxmcd/deno-docker/blob/master/0/slim/Dockerfile)*
- - `master` *[(Dockerfile)](https://github.com/maxmcd/deno-docker/blob/master/Dockerfile)*
 
 ## Contributing
 
