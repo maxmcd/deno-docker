@@ -1,6 +1,6 @@
 FROM debian:jessie-slim
 
-ENV DENO_VERSION 0.2.0
+ENV DENO_VERSION 0.2.1
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
     ca-certificates \
