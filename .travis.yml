@@ -8,7 +8,13 @@ script:
 - docker-compose build --build-arg DENO_VERSION=$(sh ./version.sh) jessie
 - docker-compose build --build-arg DENO_VERSION=$(sh ./version.sh) slim
 - docker-compose push jessie
+- docker tag maxmcd/deno:jessie maxmcd/deno:jessie-$(sh ./version.sh)
+- docker push maxmcd/deno:jessie-$(sh ./version.sh)
+- docker tag maxmcd/deno:jessie maxmcd/deno:latest
+- docker push maxmcd/deno:latest
 - docker-compose push slim
+- docker tag maxmcd/deno:slim maxmcd/deno:slim-$(sh ./version.sh)
+- docker push maxmcd/deno:slim-$(sh ./version.sh)
 env:
   global:
   - secure: aBkNQEwevRNEX2Y0ax+HiV8dOglvi7h0U0lU0MzQhv73MAgYKVtGx39+oSDaTjlGdLg2a9DHGYdya5ae6gTlSfsLdkPncPSQ5fd/xAhKJ6w7em/VdKk2Fxy3sc52xn2EQWcbJIETOjpMV7HS8Suq8FsDi96AjqCI0jPwphg3yH41FJ64YkjRQilvoIGxx5tcFaH1VK9S6Z2TTUwW4G2Cavit3EQ7DqnFRMDrxCjfGOdaCl9NO1mWTcc1CBbXMNZX8Hzfnwz/lDlTIrFpqRx3EJZ/EOw1ZRL/JZyTpYs6iJuvIAF2R1iv6WtZdu3jet3+J1SW37L78C+/uDnYDL24AdrIYSVvMcnJW0sweUgPeiWj6Y5jC0E27G4YjBqRQLHjK7wJJsicmt470jmBIENfdTpPJNA8/R7tDsXdBs6i9EKAc/PUJiGTqGBSmdpDFcbkGBF0lYtvGIaTQnZWJb3FA/n4xGOu7BvwbaOkHZ5xee2A2Wd9njz212vjFrxqNsmirA/c3b/aSVnizitsVBotmBze89KLRSGmp3e6Jua1/Vxj569o2CjqdHxeLLx9wMEDnqxY5nKUq1a1C88VErLsor5UptwmvoJje3vApgpVPwiKdt1qqc4W125gHQeCBHBDLWPT0dV3uiBKb019tmcgHqTtlg+x0mrj2GPNggwhH7A=
