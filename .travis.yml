@@ -4,8 +4,9 @@ services:
 script:
 - set -e
 - echo "$DOCKER_PASSWORD" | docker login --username "$DOCKER_USERNAME" --password-stdin
-- docker-compose build jessie
-- docker-compose build slim
+- echo $(sh ./version.sh)
+- docker-compose build --build-arg DENO_VERSION=$(sh ./version.sh) jessie
+- docker-compose build --build-arg DENO_VERSION=$(sh ./version.sh) slim
 - docker-compose push jessie
 - docker-compose push slim
 env:

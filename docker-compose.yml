@@ -12,8 +12,16 @@ services:
       dockerfile: ./Dockerfile
     image: maxmcd/deno:master
   jessie:
-    build: ./0/jessie/
+    build: 
+      context: ./0/jessie/
+      dockerfile: Dockerfile
+      args:
+        DENO_VERSION: 0.2.4
     image: maxmcd/deno:jessie
   slim:
-    build: ./0/slim/
+    build: 
+      context: ./0/slim/
+      dockerfile: Dockerfile
+      args:
+        DENO_VERSION: 0.2.4
     image: maxmcd/deno:slim
