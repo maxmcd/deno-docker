@@ -1,24 +1,25 @@
 sudo: required
 before_install:
-  - sudo apt-get update
+- sudo apt-get update
 services:
-  - docker
+- docker
 script:
-  - set -e
-  - echo "$DOCKER_PASSWORD" | docker login --username "$DOCKER_USERNAME" --password-stdin
-  - bash ./version.sh
-  - bash ./version.sh > version.txt && cat version.txt
-  - docker-compose build --build-arg DENO_VERSION=$(cat version.txt) jessie
-  - docker-compose build --build-arg DENO_VERSION=$(cat version.txt) slim
-  - docker-compose push jessie
-  - docker tag maxmcd/deno:jessie maxmcd/deno:jessie-$(cat version.txt)
-  - docker push maxmcd/deno:jessie-$(cat version.txt)
-  - docker tag maxmcd/deno:jessie maxmcd/deno:latest
-  - docker push maxmcd/deno:latest
-  - docker-compose push slim
-  - docker tag maxmcd/deno:slim maxmcd/deno:slim-$(cat version.txt)
-  - docker push maxmcd/deno:slim-$(cat version.txt)
+- set -e
+- echo "$DOCKER_PASSWORD" | docker login --username "$DOCKER_USERNAME" --password-stdin
+- bash ./version.sh
+- bash ./version.sh > version.txt && cat version.txt
+- docker-compose build --build-arg DENO_VERSION=$(cat version.txt) jessie
+- docker-compose build --build-arg DENO_VERSION=$(cat version.txt) slim
+- docker-compose push jessie
+- docker tag maxmcd/deno:jessie maxmcd/deno:jessie-$(cat version.txt)
+- docker push maxmcd/deno:jessie-$(cat version.txt)
+- docker tag maxmcd/deno:jessie maxmcd/deno:latest
+- docker push maxmcd/deno:latest
+- docker-compose push slim
+- docker tag maxmcd/deno:slim maxmcd/deno:slim-$(cat version.txt)
+- docker push maxmcd/deno:slim-$(cat version.txt)
 env:
   global:
   - secure: aBkNQEwevRNEX2Y0ax+HiV8dOglvi7h0U0lU0MzQhv73MAgYKVtGx39+oSDaTjlGdLg2a9DHGYdya5ae6gTlSfsLdkPncPSQ5fd/xAhKJ6w7em/VdKk2Fxy3sc52xn2EQWcbJIETOjpMV7HS8Suq8FsDi96AjqCI0jPwphg3yH41FJ64YkjRQilvoIGxx5tcFaH1VK9S6Z2TTUwW4G2Cavit3EQ7DqnFRMDrxCjfGOdaCl9NO1mWTcc1CBbXMNZX8Hzfnwz/lDlTIrFpqRx3EJZ/EOw1ZRL/JZyTpYs6iJuvIAF2R1iv6WtZdu3jet3+J1SW37L78C+/uDnYDL24AdrIYSVvMcnJW0sweUgPeiWj6Y5jC0E27G4YjBqRQLHjK7wJJsicmt470jmBIENfdTpPJNA8/R7tDsXdBs6i9EKAc/PUJiGTqGBSmdpDFcbkGBF0lYtvGIaTQnZWJb3FA/n4xGOu7BvwbaOkHZ5xee2A2Wd9njz212vjFrxqNsmirA/c3b/aSVnizitsVBotmBze89KLRSGmp3e6Jua1/Vxj569o2CjqdHxeLLx9wMEDnqxY5nKUq1a1C88VErLsor5UptwmvoJje3vApgpVPwiKdt1qqc4W125gHQeCBHBDLWPT0dV3uiBKb019tmcgHqTtlg+x0mrj2GPNggwhH7A=
   - secure: ilc/bzlxkawkZLtBDPURrsS+M9vpGtI3dXaOtpEAAbOINuEdVvmFtZOOjM90tRPvOOLhd9MOEMfGrK3oS/cbMfO7MNeKUzinNfmHJj7WlA+I7S4yKhmPKqPuW/q8qm/FbZT+7ZDNTMqtmuZ7AN04mu+aEhs9XWoLmO5+zPJX63wLiJomk8KX5V7tprZO6vRAhU3pNTMycMrtb9rNAdoVkgZHoDswqlMEZZEWVWVwsQmz9Os5/jo/hQ6GWMl9uiCxHSzZ9N5MNa5WmLRSXhhkWcr7v/ztWlDfk295K7g47zuGIDAfA5ruMLTj3BBmZVPLQbJ2NrhqqUZjwS7yyvBG0vKKbfw1Adpivyywt1NruoCeQQCkWDJ6G1hSJ+R1LIe9PbjMXHnis1ePreAVkNMyOq/UjeT+ign0qLgStghWE+IX4PVqfPadNPnsAcPL7l2QqhHT099VeL5KDQmzne3ijykGR3anpFp3lpsZZ21APOX9QOea4IS2zCGL6p44DJ6DosgYnC5IGWqQXegxkoIJbh/OZg4k6DfsKERF1pWoMlFjezmiiqlr/SRyt9aw9R/LWdt3yAzzASKzkCKBCwl4mN9XdOPofnUn7hL6+Px55SGXEvPCdR6ylQA4vBdilyC+AFM6/d1BRlLthSRmCIS+cYW40xekFkltLDUSqYEhMSM=
+  - secure: DFxwmPgxqSmqynIvgLxYVgp1cD8zlUjqYGKnRt+IEQdg7ws1aywXIBMJwvJWJqEkLqpFw58iH/Ko6p8XCMFINvxm4TlfQziN0fLvQUIGZkePmf7rMtdLLHZ6/Qdk4CETxt1bPQ6vcVoRNW1eOJBP00AwQK43qXGmlT7CAWWebzwCI2bVXvB6Ww53EWa95aqCeSycGXhMb9OkFzolV3f+hunVjkS6+eqOj3GaS4ju5yPmqUG5qfC2MjOc5uSXIIVl4mFWGP72gNKpMsluuhB45cqDan5VTwlp+4owN3mKENBZx3Zexj0B5clhiUKTxMN+gKhY18FgB3fnQxlsFcGP3lrom/nY9svAb3v1O6SH29Nte6AcASdxbhu7iEtAhH/8Hex/uMASfG0YXeYuBiIlaqoiZdN6cVtmtEe49YhSdrLGl9LngRGF+zOEC62x+fACiCZlgZPV+9TpGYCL77PjyCalVtSxIhdESONDMictD8vzHFhJpuU25/HoDsStTTXztA2vcEuRYCvH5w8zxzOedmqQbFAlYswdYNEV9CuRKFzsyX0yKqxUtRGLBEqVHdUIgiDxwybR6t80jHu+46N0GN6kMaQ84dYinjXcpRd6qZLpIZsHqBpX7MMVmvoB6OssjzvMRq0pdEmyfYv+mBGJ7wZKbSNjSGRqrkzs0nl8cto=
