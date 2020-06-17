@@ -1,3 +1,11 @@
+# Archived
+
+This has been superseeded by better run and better maintained deno docker projects. I recommend using https://github.com/hayd/deno-docker and the corresponding: https://hub.docker.com/r/hayd/deno
+
+Old readme below:
+
+-----
+
 # Deno Docker
 
 Docker images for [denoland/deno](https://github.com/denoland/deno)
